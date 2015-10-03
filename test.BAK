@@ -1,0 +1,39 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/hiroaki.js"></script>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #map {
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+<form>
+  Pclass: <select id="Pclass">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select><br>
+  Sex: <select id="Sex">
+  <option value="male">male</option>
+  <option value="female">female</option>
+</select><br>
+  Age: <input id="Age" type="text" name="Age"><br>
+  Fare: <input id="Fare" type="text" name="Fare"><br>
+  <input id="test" type="button" value="[HIRO env] check whether you can survive or not"><br>
+  <input id="showMap" type="button" value="[HIRO env] showing maps">
+</form>
+<p id="result"></p>
+<div id="map"></div>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEwZC-6NgDwCKEqTqn_x7Bs-JEYD9gg0g&signed_in=true&callback=initMap"></script>
+</body>
