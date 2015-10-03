@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <title>Project Name</title>
+    <title>Not Your Complaint</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
@@ -41,12 +41,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/test.html">Project Name</a>
+          <a class="navbar-brand" href="/test.html">Not Your Complaint</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             <li><a class="mlink" data-target="#about">About</a></li>
-            <li><a class="mlink" data-target="#mapsection">Map</a></li>
+            <li><a class="mlink" data-target="#team">Team</a></li>
             <li><a class="mlink" data-target="#tech">Technology</a></li>
             <li><a class="mlink" data-target="#example">Example</a></li>
           </ul>
@@ -57,70 +57,70 @@
     <div id="headerwrap">
       <div class="container">
         <div class="row">
-          <div class="info col-lg-6 col-lg-offset-3">
+          <div class="col-lg-8 info" id="map">
+
+          </div>
+          <div class="col-lg-1">
+
+          </div>
+          <div class="info col-lg-3">
             <p>
             <div class="row">
-              <div class="col-lg-4"><h4>Pclass:</h4></div>
+              <div class="col-lg-4"><h4>Type</h4></div>
               <div class="col-lg-8">
-                <select id="Pclass" class="form-control">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                <select id="Type" class="form-control">
+                  <option value="Noise">Noice</option>
+                  <option value="Air Quality">Air Quality</option>
+                  <option value="Safty">Safty</option>
                 </select>
               </div>
             </div>
             <div class="row">
-              <div class="col-lg-4"><h4>Sex:</h4></div>
+              <div class="col-lg-4"><h4>Time</h4></div>
               <div class="col-lg-8">
-                <select id="Sex" class="form-control">
-                  <option value="male">male</option>
-                  <option value="female">female</option>
+                <select id="Time" class="form-control">
+                  <option value="All">All</option>
+                  <option value="Morning">Morning (5-12)</option>
+                  <option value="Afternoon">Afternoon (12-17)</option>
+                  <option value="Evening">Evening (17-21)</option>
+                  <option value="Night">Morning (21-5)</option>
                 </select>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-4"><h4>Age:</h4></div>
-              <div class="col-lg-8">
-                <input id="Age" name="Age" type="text" class="form-control" placeholder="20">
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-4"><h4>Fare:</h4></div>
-              <div class="col-lg-8">
-                <input id="Fare" name="Fare" type="text" class="form-control" placeholder="100">
-              </div>
-            </div>
-            <div class="row"><button id="test" type="button" class="btn btn-default pull-right">[HIRO env] check whether you can survive or not</button></div>
-            <div class="row"><button id="showMap" type="button" class="btn btn-default pull-right">[HIRO env] showing maps</button></div>
-
+            <div class="row"><button id="filter" type="button" class="btn btn-default pull-right">Filter</button></div>
             <!--div class="row">
               <div class="col-lg-4"><h4>property</h4></div>
               <div class="col-lg-8"><input id="input" type="text" class="form-control" value=""></div>
             </div-->
 
             </p>
-            <div class="result">
-              <p></p>
-            </div>
           </div>
         </div><! --/row -->
       </div> <!-- /container -->
     </div><! --/headerwrap -->
 
 
-<p id="result"></p>
+<!--p id="result"></p>
 <div class="container">
   <h1 class="text-center" id="mapsection">Map</h1>
   <div class="row">
     <div id="map" class="col-lg-8 col-lg-offset-2"></div>
   </div> 
-</div>
+</div-->
+
+<!--div class="container">
+  <h1 class="text-center" id="chart">Chart</h1>
+  <div class="row">
+    <div id="chart_div" class="col-lg-8 col-lg-offset-4"></div>
+  </div> 
+</div-->
         <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
     <script src="js/hiroaki.js"></script>
 
     <script async defer

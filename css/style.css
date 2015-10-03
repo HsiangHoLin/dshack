@@ -121,6 +121,10 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
+.container {
+	margin-top: 30px;
+}
+
 .container p {
     padding: 5px;
 }
@@ -158,11 +162,16 @@ a > i:hover {
 .info {
 	background-color: #6a6561;
 	padding-bottom: 20px;
+	margin-top: -20px;
 	opacity: 0.85;
 }
 
 .btn {
 	margin: 10px;
+}
+
+#map {
+	height: 500px;
 }
 
 /*p > a {
