@@ -2,13 +2,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <title>Not Your Complaint</title>
+    <title>NYC</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Fontawesome CSS -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/test.html">Not Your Complaint</a>
+          <a class="navbar-brand" href="/test.html">NYC - Not Your Complaint</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -55,33 +55,34 @@
 
     <div id="headerwrap">
       <div class="container">
+        <div class="info"><h1>Not Your Complaint</h1></div>
         <div class="row">
-          <div class="col-lg-8 info" id="map">
+          <div class="col-lg-8 info2" id="map">
 
           </div>
           <div class="col-lg-1">
 
           </div>
-          <div class="info col-lg-3">
+          <div class="info2 col-lg-3">
             <div class="myblock">
             <div class="row">
               <div class="col-lg-4"><h4>Type</h4></div>
               <div class="col-lg-8">
                 <select id="type" class="form-control">
-                  <option value="heat">Heat Problem</option>
-                  <option value="street">Street Condition</option>
-                  <option value="streetlight">Stree Light</option>
-                  <option value="blocked">Blocked Driveway</option>
-                  <option value="illegalparking">Illegal Parking</option>
-                  <option value="unsanitary">Unsanitary Condition</option>
-                  <option value="water">Water System</option>
-                  <option value="noise">Noise</option>
-                  <option value="dirty">Dirty Condition</option>
-                  <option value="snow">Snow</option>
                   <option value="animal">Animal Abuse</option>
+                  <option value="blocked">Blocked Driveway</option>
+                  <option value="dirty">Dirty Condition</option>
+                  <option value="heat">Heat Problem</option>
+                  <option value="illegalparking">Illegal Parking</option>
+                  <option value="noise">Noise</option>
                   <option value="mayor">Opinion for Mayor</option>
                   <option value="safty">Safty</option>
+                  <option value="snow">Snow</option>
+                  <option value="street">Street Condition</option>
+                  <option value="streetlight">Stree Light</option>            
+                  <option value="unsanitary">Unsanitary Condition</option>
                   <option value="vending">Vending</option>
+                  <option value="water">Water System</option>
                 </select>
               </div>
             </div>
@@ -94,17 +95,19 @@
                 </select>
               </div>
             </div>
-            <div class="row"><button id="filter" type="button" class="btn btn-default pull-right">Filter</button></div>
+            <div class="row">
+                <button id="filter" type="button" class="btn btn-info centered">Search</button>
+            </div>
             </div>
             <div class="myblock">
             <p>
             <h4>Top Complaints Nearby</h4>
             <ol>
-              <h4><li id="top1"></li></h4>
-              <h4><li id="top2"></li></h4>
-              <h4><li id="top3"></li></h4>
-              <h4><li id="top4"></li></h4>
-              <h4><li id="top5"></li></h4>
+              <h4 class="text-left"><li id="top1"></li></h4>
+              <h4 class="text-left"><li id="top2"></li></h4>
+              <h4 class="text-left"><li id="top3"></li></h4>
+              <h4 class="text-left"><li id="top4"></li></h4>
+              <h4 class="text-left"><li id="top5"></li></h4>
             <ol>
             </p>
             </div>
@@ -113,35 +116,77 @@
       </div> <!-- /container -->
     </div><! --/headerwrap -->
 
-  <div class="whiteback">
+  <div class="grayback">
     <div class="container">
       <h1 id="about" class="centered">About</h1>
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <p>We make NYC a smart city.</p>
+          <p class="centered">It's all about your neighborhood.</p>
+          <p class="centered">Everyday, about three hundred 3-1-1 service requests are created around NYC. We visualize 3-1-1 service requests on NYC OpenData to make people in NYC better understand their neighborhood, choose where to live and improve the community.</p>
+          <br>
+          <div class="row">
+            <div class="col-lg-4 centered">
+              <i class="fa fa-map-o fa-5x "></i>
+              <h4>Know Your Neighborhood</h4>
+            </div>
+            <div class="col-lg-4 centered">
+              <i class="fa fa-map-marker fa-5x "></i>
+              <h4>Choose Your Neighborhood</h4>
+            </div>
+            <div class="col-lg-4 centered">
+              <i class="fa fa-users fa-5x "></i>
+              <h4>Improve Your Neighborhood</h4>
+            </div>
+          </div>
       </div>
       </div>
     </div>
   </div>
 
-    <div class="grayback">
+    <div class="whiteback">
     <div class="container">
       <h1 id="tech" class="centered">Technology</h1>
       <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-          <p>We use 311 service requests from 2010 to present on NYC OpenData to let user find out the optential problems within their neighborhood. We also analyze neighborhood by zip code to find out top 5 complaints about them.</p>
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+          <p>We use 3-1-1 service requests from 2010 to present on NYC OpenData to let user find out the potential problems within their neighborhood. We also analyze neighborhood by ZIP code to find out top 5 complaints about them.</p>
+          <br>
+          <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+              <img src="img/flow.jpg" class="img-responsive" alt="flow" height="800" width="800">
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="col-lg-4 centered">
+              <i class="fa fa-share-alt fa-5x "></i>
+              <h4>Visualize Complaint Distribution</h4>
+            </div>
+            <div class="col-lg-4 centered">
+              <i class="fa fa-bar-chart fa-5x "></i>
+              <h4>Analyze Top Complaints</h4>
+            </div>
+            <div class="col-lg-4 centered">
+              <i class="fa fa-cloud fa-5x "></i>
+              <h4>Develope Interactive Web App Using Azure Web Service</h4>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2">
+        </div>
       </div>
       </div>
     </div>
-   </div>
 
-    <div class="whiteback">
+    <div class="grayback">
     <div class="container">
       <h1 id="team" class="centered">Team</h1>
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
           <p>We are first year master degree students from Computer Science, Data Scienece and Statistics.</p>
-          <img src="img/t3.jpg" class="img-responsive" alt="Responsive image" height="200" width="700">
+          <img src="img/t3.jpg" class="img-responsive" alt="team picture" height="200" width="700">
       </div>
       </div>
     </div>

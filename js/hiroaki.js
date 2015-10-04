@@ -1,5 +1,13 @@
 $(function(){
 	$("#filter").click(function(){
+		
+		if (heatmap != null) {
+                  //heatmap.setMap(null);
+		  heatmapData = [];
+		  heatmap.setOptions({ opacity:0 });
+		}
+		
+		
 		var time = $("#time").val();
 		var type = $("#type").val();
 
@@ -11,7 +19,7 @@ $(function(){
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			url: "http://localhost/ms_hackathon/Dropbox/share/brian/azure_category.php", 
+			url: "azure_category.php", 
 			data: data
 			}).done(function(data) {
 			  setDataMap(data['Results']['output1']['value']['Values']);
@@ -131,14 +139,14 @@ function initMap() {
 
 
   map.addListener('click', function(e) {
-  var latlng = {lat: parseFloat(e['latLng']['H']), lng: parseFloat(e['latLng']['L'])};
+    var latlng = {lat: parseFloat(e['latLng']['H']), lng: parseFloat(e['latLng']['L'])};
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[1]) {
-        alert(results[0]['address_components'][8]['short_name']);
-	//here
+          if (results[0]['address_components'][8]['short_name'] == 10026 || results[0]['address_components'][8]['short_name'] == 10027 || results[0]['address_components'][8]['short_name'] == 10013 || results[0]['address_components'][8]['short_name'] == 11216 || results[0]['address_components'][8]['short_name'] == 11365 )
 	    var data = {
-	       "post": results[0]['address_components'][8]['short_name']
+	       "zipcode": results[0]['address_components'][8]['short_name']
+               //"zipcode": 9999
 	    };
 	    data = $(this).serialize() + "&" + $.param(data);
 	    $.ajax({
@@ -147,9 +155,10 @@ function initMap() {
 		data: data,
 		url: "azure_top5.php"
 		}).done(function(data) {
-	          setDataMap(data['results']);
-		  
+		  console.log(data);
+	          setTop5(data['Results']['output1']['value']['Values']);
 		}).fail(function(data) {
+	          console.log(data);
 		}).always(function() {
 	    });
       } else {
@@ -163,6 +172,13 @@ function initMap() {
 
 }
 
+function setTop5(data) {
+  $('#top1').text(data[0][0] + ' ' + data[0][1]);
+  $('#top2').text(data[1][0] + ' ' + data[1][1]);
+  $('#top3').text(data[2][0] + ' ' + data[2][1]);
+  $('#top4').text(data[3][0] + ' ' + data[3][1]);
+  $('#top5').text(data[4][0] + ' ' + data[4][1]);
+}
 
 function setMarkers(map) {
   
@@ -201,7 +217,6 @@ function setMarkers(map) {
   ];
 */
 
-  console.log(heatmapData);
   var pointArray = new google.maps.MVCArray(heatmapData);
 
   heatmap = new google.maps.visualization.HeatmapLayer({

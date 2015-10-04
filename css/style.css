@@ -23,9 +23,9 @@ body {
     height: 100%;
 }
 
-#map {
+/*#map {
     height: 100%;
-}
+}*/
 
 ::-moz-selection {
     background: #8fc7eb;
@@ -160,8 +160,12 @@ a > i:hover {
 }
 
 .info {
+	margin-top: -110px;
+}
+
+.info2 {
 	padding-bottom: 20px;
-	margin-top: -80px;
+	margin-top: 20px;
 	opacity: 0.85;
 }
 
@@ -180,7 +184,7 @@ a > i:hover {
 }
 
 #map {
-	height: 480px;
+	height: 420px;
 }
 
 /*p > a {
@@ -207,7 +211,7 @@ p > a:hover {
 	background-attachment: relative;
 	background-position: center center;
     background-repeat: no-repeat;
-	min-height: 650px;
+	min-height: 750px;
     height: 100%;
 	width: 100%;
 
@@ -223,7 +227,7 @@ p > a:hover {
 }
 
 #headerwrap h1 {
-	color:#ffffff;
+	color:#2f2f2f;
 	padding-top: 10px;
 	padding-bottom: 20px;
 	letter-spacing: 4px;
