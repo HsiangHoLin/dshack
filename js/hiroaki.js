@@ -16,6 +16,7 @@ $(function(){
 			}).done(function(data) {
 			  setDataMap(data['Results']['output1']['value']['Values']);
 			}).fail(function(data) {
+		   	  console.log(data);
 			}).always(function() {
 		});
 	});
@@ -50,8 +51,12 @@ $(function(){
 
   function setDataMap(data) {
     for (var i=0; i<data.length; i++) {
-      places.push([ data[i][3], parseFloat(data[i][8]), parseFloat(data[i][9]), i ]);
-      infoWindowContent.push([data[i][3], data[i][0]]);
+      //places.push([ data[i][3], parseFloat(data[i][8]), parseFloat(data[i][9]), i ]);
+      //infoWindowContent.push([data[i][3], data[i][0]]);
+      if ( isNaN(data[i][8]) || isNaN(data[i][9]) || data[i][8] == undefined || data[i][9] == undefined || data[i][8] == null || data[i][9] == null || data[i][8] == '' || data[i][9] == '') {
+      } else {
+        heatmapData.push(new google.maps.LatLng(parseFloat(data[i][8]), parseFloat(data[i][9])) );
+      }
     }
     //places  0:title 1:lat 2:lng 3:index?
     //infoWindowContent 1:description
@@ -72,6 +77,7 @@ $(function(){
 // global value
 var map;
 var heatmap;
+var heatmapData = [];
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
@@ -130,6 +136,22 @@ function initMap() {
     if (status === google.maps.GeocoderStatus.OK) {
       if (results[1]) {
         alert(results[0]['address_components'][8]['short_name']);
+	//here
+	    var data = {
+	       "post": results[0]['address_components'][8]['short_name']
+	    };
+	    data = $(this).serialize() + "&" + $.param(data);
+	    $.ajax({
+		type: "POST",
+		dataType: "json",
+		data: data,
+		url: "azure_top5.php"
+		}).done(function(data) {
+	          setDataMap(data['results']);
+		  
+		}).fail(function(data) {
+		}).always(function() {
+	    });
       } else {
         window.alert('No results found');
       }
@@ -147,6 +169,7 @@ function setMarkers(map) {
   
   var infoWindow = new google.maps.InfoWindow(), marker, i;
 
+/*
   for (i = 0; i < places.length; i++) {
     var place = places[i];
     var marker = new google.maps.Marker({
@@ -166,16 +189,20 @@ function setMarkers(map) {
 	})(marker, i));
 
   } //for
+*/
 
-  var taxiData = [
+/*
+  var heatmapData = [
     new google.maps.LatLng(40.803336, -73.953855),
     new google.maps.LatLng(40.800336, -73.950855),
     new google.maps.LatLng(40.790336, -73.948855),
     new google.maps.LatLng(40.789336, -73.945855),
     new google.maps.LatLng(40.783336, -73.943855)
   ];
+*/
 
-  var pointArray = new google.maps.MVCArray(taxiData);
+  console.log(heatmapData);
+  var pointArray = new google.maps.MVCArray(heatmapData);
 
   heatmap = new google.maps.visualization.HeatmapLayer({
     data: pointArray,
