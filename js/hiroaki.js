@@ -167,17 +167,6 @@ function setMarkers(map) {
 
   } //for
 
-/*
-  heatmap = new google.maps.visualization.HeatmapLayer({
-      data: [
-    new google.maps.LatLng(40.803336, -73.953855),
-    new google.maps.LatLng(40.800336, -73.950855),
-    new google.maps.LatLng(40.790336, -73.948855),
-    new google.maps.LatLng(40.789336, -73.945855),
-    new google.maps.LatLng(40.783336, -73.943855)],
-      map: map
-  });
-*/
   var taxiData = [
     new google.maps.LatLng(40.803336, -73.953855),
     new google.maps.LatLng(40.800336, -73.950855),
