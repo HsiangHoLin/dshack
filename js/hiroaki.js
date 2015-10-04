@@ -1,28 +1,20 @@
 $(function(){
-	$("#test").click(function(){
-		var Pclass = $("#Pclass").val();
-		var Sex = $("#Sex").val();
-		var Age = $("#Age").val();
-		var Fare = $("#Fare").val();
+	$("#filter").click(function(){
+		var time = $("#time").val();
+		var type = $("#type").val();
 
 		var data = {
-			"Pclass": Pclass, 
-			"Sex": Sex, 
-			"Age": Age,
-			"Fare": Fare,
+			"time": time, 
+			"type": type
 		};
 		data = $(this).serialize() + "&" + $.param(data);
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			url: "http://localhost/ms/test_ajax.php", 
+			url: "http://localhost/ms_hackathon/Dropbox/share/brian/azure_category.php", 
 			data: data
 			}).done(function(data) {
-			  if( parseInt(data["Results"]["output1"]["value"]["Values"][0]) == 0 ) {
-			    $('#result').text('You will die');
-			  } else {
-			    $('#result').text('You will survive');
-			  }
+			  setDataMap(data['Results']['output1']['value']['Values']);
 			}).fail(function(data) {
 			}).always(function() {
 		});
@@ -58,10 +50,10 @@ $(function(){
 
   function setDataMap(data) {
     for (var i=0; i<data.length; i++) {
-      places.push([ data[i]['name'], data[i]['geometry']['location']['lat'], data[i]['geometry']['location']['lng']]);
-      infoWindowContent.push([data[i]['name']]);
+      places.push([ data[i][3], parseFloat(data[i][8]), parseFloat(data[i][9]), i ]);
+      infoWindowContent.push([data[i][3], data[i][0]]);
     }
-    //places  1:name 2:lat 3:lng
+    //places  0:title 1:lat 2:lng 3:index?
     //infoWindowContent 1:description
     setMarkers(map);
   }
@@ -79,6 +71,7 @@ $(function(){
 
 // global value
 var map;
+var heatmap;
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
@@ -91,6 +84,7 @@ var infoWindowContent = [];
 // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
 // to the base of the flagpole.
 function initMap() {
+  var geocoder = new google.maps.Geocoder;
   // Create an array of styles.
   var styles = [
     {
@@ -128,34 +122,36 @@ function initMap() {
 
   map.mapTypes.set('map_style', styledMap);
   map.setMapTypeId('map_style');
+
+
+  map.addListener('click', function(e) {
+  var latlng = {lat: parseFloat(e['latLng']['H']), lng: parseFloat(e['latLng']['L'])};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      if (results[1]) {
+        alert(results[0]['address_components'][8]['short_name']);
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+   });
+  });
+
 }
 
 
 function setMarkers(map) {
-  var image = {
-    url: 'img/beachflag.png',
-    // This marker is 20 pixels wide by 32 pixels high.
-    size: new google.maps.Size(20, 32),
-    // The origin for this image is (0, 0).
-    origin: new google.maps.Point(0, 0),
-    // The anchor for this image is the base of the flagpole at (0, 32).
-    anchor: new google.maps.Point(0, 32)
-  };
-  var shape = {
-    coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    type: 'poly'
-  };
-
+  
+  
   var infoWindow = new google.maps.InfoWindow(), marker, i;
-
 
   for (i = 0; i < places.length; i++) {
     var place = places[i];
     var marker = new google.maps.Marker({
       position: {lat: place[1], lng: place[2]},
       map: map,
-      icon: image,
-      shape: shape,
       title: place[0],
       zIndex: place[3]
     });
@@ -169,7 +165,36 @@ function setMarkers(map) {
 	    }
 	})(marker, i));
 
-  }
+  } //for
+
+/*
+  heatmap = new google.maps.visualization.HeatmapLayer({
+      data: [
+    new google.maps.LatLng(40.803336, -73.953855),
+    new google.maps.LatLng(40.800336, -73.950855),
+    new google.maps.LatLng(40.790336, -73.948855),
+    new google.maps.LatLng(40.789336, -73.945855),
+    new google.maps.LatLng(40.783336, -73.943855)],
+      map: map
+  });
+*/
+  var taxiData = [
+    new google.maps.LatLng(40.803336, -73.953855),
+    new google.maps.LatLng(40.800336, -73.950855),
+    new google.maps.LatLng(40.790336, -73.948855),
+    new google.maps.LatLng(40.789336, -73.945855),
+    new google.maps.LatLng(40.783336, -73.943855)
+  ];
+
+  var pointArray = new google.maps.MVCArray(taxiData);
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: pointArray,
+    radius: 50
+  });
+ 
+  // placing the heatmap on the map
+  heatmap.setMap(map);
 }
 
 $(document).ready(function () {
